@@ -42,8 +42,8 @@ class Solution
                 }
                 int a=A[i-1];
                 while(a==A[i]){i++;}
-                int b=B[j-1];
-                while(b==B[j]){j++;}
+                // int b=B[j-1];
+                // while(b==B[j]){j++;}
                 // int c=C[k-1];
                 // while(c==C[i]){k++;}
             }
