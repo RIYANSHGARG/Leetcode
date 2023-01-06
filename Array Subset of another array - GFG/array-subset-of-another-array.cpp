@@ -29,6 +29,15 @@ int main() {
 
 
 string isSubset(int a1[], int a2[], int n, int m) {
+    
+    // Method 1 : naive approach
+    // pickibg up element and searching in the array   -> O(nm)
+    
+    // Method 2 : sorting main array and applying binary search for each and every element for arr2 in arr1.
+    
+    // method 3 : sorting arr1 and then finding every element of arr2 using two pointer approach
+    
+    // method 4 : using hashing
     if(m>n)     return "No";
     string ans;
     unordered_map<int,int> s;
