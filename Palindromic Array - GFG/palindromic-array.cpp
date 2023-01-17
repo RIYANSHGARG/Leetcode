@@ -9,17 +9,25 @@ using namespace std;
 #include <bits/stdc++.h>
 class Solution {
 public:
-    bool CheckPalindrome(int a){
+    bool CheckPalindrome1(int a){
         string s=to_string(a);
         string s1=s;
         reverse(s.begin(),s.end());
-        if(s==s1)   return 1;
-        else return 0;
+        return (s==s1);
+    }
+    
+    bool CheckPalindrome2(int a){
+        int b=0,c=a;
+        while(a!=0){
+            b=b*10+a%10;
+            a/=10;
+        }
+        return (b==c);
     }
 
     int PalinArray(int a[], int n)
     {
-        for(int i=0;i<n;i++)    if(!CheckPalindrome(a[i]))  return 0;
+        for(int i=0;i<n;i++){if(!CheckPalindrome2(a[i])){return 0;}}
         return 1;
     }
 };
