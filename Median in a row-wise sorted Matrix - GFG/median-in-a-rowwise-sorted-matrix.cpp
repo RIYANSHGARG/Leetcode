@@ -12,6 +12,8 @@ class Solution{
 public:
     int median(vector<vector<int>> &matrix, int R, int C){
         // code here      
+        
+        // Naive Approach
         vector<int> v;
         for(int i=0;i<matrix.size();i++){
             for(int j=0;j<matrix[0].size();j++){
@@ -20,6 +22,9 @@ public:
         }
         sort(v.begin(),v.end());
         return v[v.size()/2];
+        
+        // Better Approach
+        
     }
 };
 
