@@ -18,6 +18,9 @@ class Solution {
         }
         int j=0,k=0;
         sort(v.begin(),v.end());
+        
+        // above Part Can Be done using min heap also.
+        
         for(int i:v){
             if(k==N){
                 j++;k=0;
