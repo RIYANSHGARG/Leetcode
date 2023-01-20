@@ -17,13 +17,23 @@ public:
     }
 
 	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
-	    int ans=-1,count=0;
-	    for(int i=0;i<arr.size();i++){
-	        int row=indexOfOne(arr[i]);
-	        if(row==arr[0].size())  return i;
-	        if(row>count){count=row;ans=i;}
-	    }
-	    return ans;
+	    
+	    // Method 1 : Better Approach Direct Done (Using Binary Search on each Row)
+	   // int ans=-1,count=0;
+	   // for(int i=0;i<arr.size();i++){
+	   //     int row=indexOfOne(arr[i]);
+	   //     if(row==arr[0].size())  return i;
+	   //     if(row>count){count=row;ans=i;}
+	   // }
+	   // return ans;
+	    
+	   // Method 2 : Logical Approach
+	   int i=0,j=arr[0].size()-1,ans=-1;
+	   while(i<n && j>=0){
+	       if(arr[i][j]==1) {ans=i;j--;}
+	       else i++;
+	   }
+	   return ans;
 	}
 
 };
