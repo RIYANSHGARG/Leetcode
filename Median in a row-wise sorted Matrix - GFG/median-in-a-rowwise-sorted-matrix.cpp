@@ -10,21 +10,42 @@ using namespace std;
 
 class Solution{   
 public:
+    int CalculateNoLessEqual(vector<int> v,int element){
+        int low=0,high=v.size()-1;
+        while(low<=high){
+            int mid=low+((high-low)/2);
+            if(v[mid]<=element)  low=mid+1;
+            else    high=mid-1;
+        }
+        return low;
+    }
+
     int median(vector<vector<int>> &matrix, int R, int C){
         // code here      
         
         // Naive Approach
-        vector<int> v;
-        for(int i=0;i<matrix.size();i++){
-            for(int j=0;j<matrix[0].size();j++){
-                v.push_back(matrix[i][j]);
+        // vector<int> v;
+        // for(int i=0;i<matrix.size();i++){
+        //     for(int j=0;j<matrix[0].size();j++){
+        //         v.push_back(matrix[i][j]);
+        //     }
+        // }
+        // sort(v.begin(),v.end());
+        // return v[v.size()/2];
+        
+        // Best Approach : Binary Search
+        
+        int low=0,high=10e6;
+        while(low<=high){
+            int mid=low+((high-low)/2);
+            int count=0;
+            for(int i=0;i<R;i++){
+                count+=CalculateNoLessEqual(matrix[i],mid);
             }
+            if(count>(R*C)/2)  high=mid-1;
+            else    low=mid+1;
         }
-        sort(v.begin(),v.end());
-        return v[v.size()/2];
-        
-        // Better Approach
-        
+        return low;
     }
 };
 
