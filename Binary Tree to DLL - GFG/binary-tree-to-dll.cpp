@@ -138,11 +138,14 @@ class Solution
     //     bToDLLHelper(next);
     // }
     
-    void DLL(Node *root, Node* &head, Node* &tail, int &f){
+    // void DLL(Node *root, Node* &head, Node* &tail, int &f){
+    void DLL(Node *root, Node* &head, Node* &tail){
         if(!root)    return;
-        DLL(root->left,head,tail,f);
-        if(f==0){
-            f=1;
+        // DLL(root->left,head,tail,f);
+        DLL(root->left,head,tail);
+        // if(f==0){
+        if(tail==NULL){
+            // f=1;
             head=root;
             tail=root;
         }else{
@@ -150,16 +153,22 @@ class Solution
             root->left=tail;
             tail=tail->right;
         }
-        DLL(root->right,head,tail,f);
+        // DLL(root->right,head,tail,f);
+        DLL(root->right,head,tail);
     }
     
     Node * bToDLL(Node *root)
     {
+        // Mehtod 1 : Brute Force approach
         Node *head = NULL;
         Node *prev = NULL;
-        int f=0;
-        DLL(root,head,prev,f);
+        // int f=0;
+        // DLL(root,head,prev,f);
+        DLL(root,head,prev);
         return head;
+        
+        // Method 2 : doing inplace
+        
     }
 };
 
