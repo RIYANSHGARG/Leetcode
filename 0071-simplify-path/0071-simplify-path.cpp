@@ -2,13 +2,13 @@ class Solution {
 public:
     string simplifyPath(string s) {
         stack<string> st;
-        for(int i=0;i<s.length();++i){
+        for(int i=0;i<s.length();i++){
             if(s[i]=='/')   continue;
             
             string temp="";
             while(i<s.length() && s[i]!='/'){
                 temp+=s[i];
-                ++i;
+                i++;
             }
             
             if(temp==".")   continue;
