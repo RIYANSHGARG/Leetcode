@@ -21,6 +21,17 @@ class Solution {
         }
         return true;
     }
+    bool dfs(int s,int c, vector<int> &color, vector<int> &vis, vector<int> adj[]){
+        // if(vis[s]==1 && color[s]!=c)    return false;
+        // if(vis[s]==1 && color[s]==c)    return true; 
+        vis[s]=1;
+        color[s]=c;
+        for(auto i:adj[s]){
+            if(!vis[i] && dfs(i,!c,color,vis,adj)==false) return false;
+            else if(color[i]==c)    return false;
+        }
+        return true;
+    }
 public:
     bool isBipartite(vector<vector<int>>& graph) {
         int n=graph.size();
@@ -33,7 +44,8 @@ public:
         vector<int> color(n,-1),vis(n,0);
         for(int i=0;i<n;i++){
             if(!vis[i]){
-                if(bfs(i,color,vis,adj)==false)    {return false;}
+                // if(bfs(i,0,color,vis,adj)==false)    {return false;}
+                if(dfs(i,0,color,vis,adj)==false)    return false;
             }
         }
         return true;        
