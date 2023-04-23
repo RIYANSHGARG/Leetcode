@@ -33,16 +33,9 @@ public:
         vector<int> color(n,-1),vis(n,0);
         for(int i=0;i<n;i++){
             if(!vis[i]){
-                // cout<<i;
                 if(bfs(i,color,vis,adj)==false)    {return false;}
             }
         }
-        for(auto i:color){
-            cout<<i<<" ";
-        }
-        // for(auto i:vis){
-        //     cout<<i<<" ";
-        // }
         return true;        
     }
 };
