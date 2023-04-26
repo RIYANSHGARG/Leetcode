@@ -20,11 +20,36 @@ class Solution {
     
     bool isCyclic(int V, vector<int> adj[]) {
         // code here
-        vector<int> vis(V,0),pathvis(V,0); 
+        
+        // Mehtod 1 : using DFS
+        // vector<int> vis(V,0),pathvis(V,0); 
+        // for(int i=0;i<V;i++){
+        //     if(!vis[i] && dfs(i,vis,pathvis,adj)==true )    return true;
+        // }
+        // return false;
+        
+        // Method 2 : using BFS (topological sort)(kahn's algorithm)(indegree)
+        vector<int> indegree(V,0);
         for(int i=0;i<V;i++){
-            if(!vis[i] && dfs(i,vis,pathvis,adj)==true )    return true;
+            for(auto j:adj[i]){
+                indegree[j]++;
+            }
         }
-        return false;
+        queue<int> q;
+	    vector<int> topo;
+	    for(int i=0;i<indegree.size();i++){
+	        if(indegree[i]==0) q.push(i);
+	    }
+	    while(!q.empty()){
+	        int node = q.front();
+	        q.pop();
+	        topo.push_back(node);
+	        for(auto i:adj[node]){
+	            indegree[i]--;
+	            if(indegree[i]==0)  q.push(i);
+	        }
+	    }
+	    return !(topo.size()==V);
     }
 };
 
