@@ -36,6 +36,7 @@ class Solution {
         dist[start % 100000]=0;
         queue<pair<int,int>> q;
         // node , step
+        // We need to find node as main priority and corresponding step will always be min because it is increasing by 1 every time
         q.push({start,0});
         while(!q.empty()){
             int node = q.front().first;
@@ -52,7 +53,6 @@ class Solution {
             }
         }
         return -1;
-        
     }
 };
 
