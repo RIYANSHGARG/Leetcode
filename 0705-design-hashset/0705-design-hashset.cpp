@@ -1,21 +1,56 @@
+class Node{
+    public:
+    int data;
+    Node *next;
+    Node(int el){
+        data=el;
+        next=NULL;
+    }
+};
+
 class MyHashSet {
 public:
-    vector<int> v;
-    int size=1e6+1;
+    vector<Node *> v;
+    int size=100;
     MyHashSet() {
         v.resize(size);
+        for(int i=0;i<size;i++){
+            v[i]=new Node(-1);;
+        }
+    }
+    
+    int hashKey(int key){
+        return key%size;
+    }
+    
+    Node *search(int key){
+        Node *temp=v[hashKey(key)];
+        while(temp->next){
+            if(temp->next->data==key) return temp;
+            temp=temp->next;
+        }
+        return NULL;
     }
     
     void add(int key) {
-        v[key]=1;
+        int val=hashKey(key);
+        if(search(key)!=NULL){
+            return ;
+        }
+        Node *newNode = new Node(key);
+        newNode->next=v[val]->next;
+        v[val]->next=newNode;
     }
     
     void remove(int key) {
-        v[key]=0;
+        Node *temp=search(key);
+        if(temp==NULL)  return;
+        temp->next=temp->next->next;
     }
     
     bool contains(int key) {
-        return v[key];
+        if(search(key)!=NULL)   return true;
+        return false;
     }
 };
 
