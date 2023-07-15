@@ -10,6 +10,10 @@ class Node{
 
 class MyHashSet {
 public:
+    
+    // ------------------- Chaining Method --------------
+    // ------------------- Using Linked list-------------
+    
     vector<Node *> v;
     int size=100;
     MyHashSet() {
