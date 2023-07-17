@@ -19,6 +19,22 @@ public:
                 else    dp[i][j]=0+max(dp[i-1][j],dp[i][j-1]);
             }
         }
+        // return dp[n][m];
+        
+        // Printing LCS : Traversing dp matrix in reverse to get elements.
+        string ans;
+        int i=n,j=m;
+        while(i>0 && j >0){
+            if(text1[i-1] == text2[j-1])    {ans+=text1[i-1];i--;j--;}
+            else{
+                if(dp[i-1][j] > dp[i][j-1]){
+                    i--;
+                }else{j--;}
+            }
+        }
+        
+        reverse(ans.begin(),ans.end());
+        cout<<ans;
         return dp[n][m];
     }
 };
