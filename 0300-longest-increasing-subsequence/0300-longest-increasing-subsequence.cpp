@@ -17,17 +17,30 @@ public:
         // for(auto i:dp){for(auto j:i){cout<<j<<" ";}cout<<endl;}
         // return ans;
         
-        // -------------------- Binary Search-------------------
-        
-        vector<int> temp;
-        temp.push_back(nums[0]);
-        for(int i=1;i<nums.size();i++){
-            if(nums[i] > temp.back())   temp.push_back(nums[i]);
-            else{
-                int ind=lower_bound(temp.begin(),temp.end(),nums[i])-temp.begin();
-                temp[ind]=nums[i];
+        //--------------------Tabulation------------------------
+        int ans=1;
+        vector<int> index(nums.size(),1);
+        for(int i=0;i<nums.size();i++){
+            for(int j=0;j<i;j++){
+                if(nums[j] < nums[i]){
+                    index[i]=max(index[i],1+index[j]);
+                    ans=max(ans,index[i]);
+                }
             }
         }
-        return temp.size();
+        return ans;
+        
+        // -------------------- Binary Search-------------------
+        
+        // vector<int> temp;
+        // temp.push_back(nums[0]);
+        // for(int i=1;i<nums.size();i++){
+        //     if(nums[i] > temp.back())   temp.push_back(nums[i]);
+        //     else{
+        //         int ind=lower_bound(temp.begin(),temp.end(),nums[i])-temp.begin();
+        //         temp[ind]=nums[i];
+        //     }
+        // }
+        // return temp.size();
     }
 };
