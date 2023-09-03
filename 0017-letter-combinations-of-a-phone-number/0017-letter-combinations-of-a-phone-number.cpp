@@ -12,9 +12,7 @@ public:
             }
         }else{
             for(int i=0;i<s.length();i++){
-                for(int j=0;j<ans.size();j++){
-                    dummy.push_back(ans[j]+s[i]);
-                }
+                for(int j=0;j<ans.size();j++){dummy.push_back(ans[j]+s[i]);}
             }
         }
         ans=dummy;
