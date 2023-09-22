@@ -25,13 +25,8 @@ class Solution
             else    s.push(a);
         }
         int el=s.top(),count=0;
-        for(int i=0;i<n;i++){
-            if(M[el][i]==1) return -1;
-        }
-        for(int i=0;i<n;i++){
-            if(M[i][el]==1) count++;
-        }
-        // cout<<count<<" "<<el;
+        for(int i=0;i<n;i++)    if(M[el][i]==1) return -1;
+        for(int i=0;i<n;i++)    if(M[i][el]==1) count++;
         if(count==n-1)  return el;
         return -1;
         
