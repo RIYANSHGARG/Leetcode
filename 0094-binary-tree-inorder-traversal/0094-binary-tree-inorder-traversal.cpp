@@ -85,11 +85,29 @@ vector<int> v;
         
         
         // practice :
+        //  recursion         
+        // if(!root)   return {};
+        // inorderTraversal(root->left);
+        // v.push_back(root->val);
+        // inorderTraversal(root->right);
+        // return v;
         
-        if(!root)   return {};
-        inorderTraversal(root->left);
-        v.push_back(root->val);
-        inorderTraversal(root->right);
-        return v;
+        //  iterative
+        TreeNode *node = root;
+        stack<TreeNode *> s;
+        vector<int> in;
+        while(true){
+            if(node){
+                s.push(node);
+                node=node->left;
+            }else{
+                if(s.empty())   break;
+                node = s.top();
+                s.pop();
+                in.push_back(node->val);
+                node=node->right;
+            }
+        }
+        return in;
     }
 };
