@@ -1,0 +1,1 @@
+select U.unique_id , e.name from EmployeeUNI U right join Employees e on u.id=e.id;
