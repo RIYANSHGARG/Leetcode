@@ -21,7 +21,7 @@ public:
     }
     
     double findMedian() {
-         if(first_half.size() == second_half.size()) return first_half.empty()?0:( (first_half.top()+second_half.top())/2.0);
+         if(first_half.size() == second_half.size()) return ((first_half.top()+second_half.top())/2.0);
         else return (first_half.size() > second_half.size())? first_half.top():second_half.top();
     }
 };
