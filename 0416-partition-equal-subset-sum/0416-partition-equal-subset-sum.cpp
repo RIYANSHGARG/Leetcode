@@ -1,25 +1,23 @@
 class Solution {
 public:
     
-    bool rec(int i, int target, vector<int> &nums,vector<vector<int>> &dp){
-        if(target==0)   return true;
-        if(i==0){
-            return (nums[i]==target);
-        }
-        if(dp[i][target]!=-1)   return dp[i][target];
-        bool notpick=rec(i-1,target,nums,dp);
-        bool pick=false;
-        if(target-nums[i]>=0)   pick=rec(i-1,target-nums[i],nums,dp);
+    bool rec(int i , vector<int> &nums , int tar , vector<vector<int>> &dp){
+        if(tar==0)   return true;
+        if(i==0)    return (tar==nums[i]);
+        if(dp[i][tar]!=-1)   return dp[i][tar];
         
-        return dp[i][target]=notpick|pick;
+        // pick
+        bool pick=false,notpick=false;
+        if(tar-nums[i]>=0)   pick=rec(i-1,nums,tar-nums[i],dp);
+        notpick=rec(i-1,nums,tar,dp);
+        return dp[i][tar]=pick|notpick;
     }
     
     bool canPartition(vector<int>& nums) {
-        int totSum=0;
-        for(auto &it:nums)  totSum+=it;
-        if(totSum%2!=0) return false;
-        // total sum/2 is out target sum that we need to find.
-        vector<vector<int>> dp(nums.size(),vector<int>(totSum+1 ,-1));
-        return rec(nums.size()-1,totSum/2,nums,dp);
+        int sum=0;
+        for(auto i:nums)    sum+=i;
+        if(sum&1)   return false;
+        vector<vector<int>> dp(nums.size()+1,vector<int>(sum+1,-1));
+        return rec(nums.size()-1 , nums , sum/2 , dp);
     }
 };
