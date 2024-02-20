@@ -16,12 +16,7 @@ public:
         // }
         // return cnt;
         
-        int sum=0;
-        vector<int> preSum;
-        for(int i=0;i<nums.size();i++){
-            sum+=nums[i];
-            preSum.push_back(sum);
-        }
+        
         unordered_map<int,int> m;
         int ans=0,pre;
         for(int i=0;i<nums.size();i++){
