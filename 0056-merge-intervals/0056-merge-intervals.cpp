@@ -7,11 +7,8 @@ public:
         for(int i=0;i<intervals.size();i++){
             if(st.empty())  st.push({intervals[i][0],intervals[i][1]});
             else{
-                if(intervals[i][0]<=st.top().second){
-                    st.top().second=max(st.top().second,intervals[i][1]);
-                }else{
-                    st.push({intervals[i][0],intervals[i][1]});
-                }
+                if(intervals[i][0]<=st.top().second)    st.top().second=max(st.top().second,intervals[i][1]);
+                else    st.push({intervals[i][0],intervals[i][1]});
             }
         }
         vector<vector<int>> ans;
