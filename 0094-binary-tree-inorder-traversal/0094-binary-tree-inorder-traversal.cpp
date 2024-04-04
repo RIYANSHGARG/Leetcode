@@ -18,10 +18,27 @@ public:
         rec(root->right,ans);
     }
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        rec(root,ans);
-        return ans;
+        // vector<int> ans;
+        // rec(root,ans);
+        // return ans;
       
+        // iteratively
+        if(!root)   return {};
+        TreeNode *node=root;
+        stack<TreeNode *> st;
         
+        vector<int> ans;
+        
+        while(true){
+            if(node){st.push(node);node=node->left;}
+            else{
+                if(st.empty())  break;
+                node=st.top();
+                st.pop();
+                ans.push_back(node->val);
+                node=node->right;
+            }
+        }
+        return ans;
     }
 };
