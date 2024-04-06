@@ -1,23 +1,26 @@
 class Solution {
 public:
     
-    bool rec(int i , vector<int> &nums , int tar , vector<vector<int>> &dp){
-        if(tar==0)   return true;
-        if(i==0)    return (tar==nums[i]);
-        if(dp[i][tar]!=-1)   return dp[i][tar];
+    bool rec(int i,int target,vector<int> &nums,vector<vector<int>> &dp){
+        if(target==0)   return true;
+        if(i<0 || target<0) return false;
         
-        // pick
-        bool pick=false,notpick=false;
-        if(tar-nums[i]>=0)   pick=rec(i-1,nums,tar-nums[i],dp);
-        notpick=rec(i-1,nums,tar,dp);
-        return dp[i][tar]=pick|notpick;
+        if(dp[i][target]!=-1)   return dp[i][target];
+        
+        bool pick = rec(i-1,target-nums[i],nums,dp);
+        bool notPick = rec(i-1,target,nums,dp);
+        
+        return dp[i][target]=pick || notPick;
     }
     
     bool canPartition(vector<int>& nums) {
         int sum=0;
-        for(auto i:nums)    sum+=i;
-        if(sum&1)   return false;
-        vector<vector<int>> dp(nums.size()+1,vector<int>(sum+1,-1));
-        return rec(nums.size()-1 , nums , sum/2 , dp);
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+        }
+        if(sum%2!=0)    return false;
+        
+        vector<vector<int>> dp(nums.size(),vector<int> (sum,-1));
+        return rec(nums.size()-1,sum/2,nums,dp);
     }
 };
